@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>潘国庆 · 网页风格简历</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Inter', sans-serif;
+            color: #1a2c3e;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 主容器 - 无纸张感 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 个人头部 - 清晰现代 */
+        .hero {
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #1e5f7a, #2c9b7e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #4a6a7f;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero-tagline span {
+            background: #d9e6f2;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1rem 0 0 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid #cddfe7;
+        }
+        .contact-bar a {
+            text-decoration: none;
+            color: #2c7da0;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .contact-bar i {
+            margin-right: 0.4rem;
+        }
+
+        /* 横向滚动区域通用 */
+        .scroll-section {
+            margin-bottom: 3rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .scroll-hint {
+            font-size: 0.8rem;
+            color: #7f9eb5;
+        }
+        .scroll-hint i {
+            font-size: 0.7rem;
+        }
+
+        /* 横向滚动容器 */
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.2rem;
+            padding-bottom: 0.8rem;
+            scrollbar-width: thin;
+        }
+        .horizontal-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .horizontal-scroll::-webkit-scrollbar-thumb {
+            background: #b9d0df;
+            border-radius: 8px;
+        }
+
+        /* 技能卡片 */
+        .skill-card {
+            flex: 0 0 220px;
+            background: white;
+            border-radius: 28px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e2edf2;
+            transition: all 0.2s;
+        }
+        .skill-card i {
+            font-size: 2rem;
+            color: #2c7da0;
+            margin-bottom: 0.6rem;
+        }
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        .skill-card p {
+            font-size: 0.8rem;
+            color: #4a627a;
+        }
+
+        /* 项目卡片 + 工作卡片 (横向滚动项) */
+        .project-card, .job-card {
+            flex: 0 0 320px;
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 1px solid #e2edf2;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover, .job-card:hover {
+            transform: translateY(-4px);
+            border-color: #bddbe8;
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.08);
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .card-sub {
+            font-size: 0.75rem;
+            color: #6e8da8;
+            margin-bottom: 0.8rem;
+        }
+        .card-desc {
+            font-size: 0.85rem;
+            color: #2c404f;
+            line-height: 1.4;
+            flex: 1;
+        }
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+        .badge {
+            background: #eef2f9;
+            border-radius: 40px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e5f7a;
+        }
+
+        /* 普通网格区域（非滚动，比如教育/优势） */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 1px solid #e2edf2;
+        }
+        .info-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 图文混排示例 (类似你给我的 guide.html 风格) */
+        .image-text-row {
+            display: flex;
+            flex-direction: row;
+            background: white;
+            border-radius: 24px;
+            margin: 1.5rem 0;
+            border: 1px solid #e2edf2;
+            overflow: hidden;
+        }
+        .image-placeholder {
+            flex-shrink: 0;
+            width: 100px;
+            background: #cbdde8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #3a6e8c;
+        }
+        .image-text {
+            flex: 1;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 650px) {
+            .hero h1 { font-size: 2.2rem; }
+            body { padding: 1rem; }
+            .project-card, .job-card { flex: 0 0 270px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 个人英雄区 -->
+    <div class="hero">
+        <h1>潘国庆</h1>
+        <div class="hero-tagline">
+            <span>🤖 AI应用开发</span>
+            <span>⚙️ 全栈型落地选手</span>
+            <span>📦 7-9k · 西安/远程</span>
+        </div>
+        <div class="contact-bar">
+            <a href="#"><i class="fas fa-phone-alt"></i> 156 9181 5337</a>
+            <a href="#"><i class="fas fa-envelope"></i> 1405338932@qq.com</a>
+            <a href="#"><i class="fab fa-github"></i> github.com/pan140533</a>
+        </div>
+    </div>
+
+    <!-- 技能墙 - 横向卡片滚动 -->
+    <div class="scroll-section">
+        <div class="section-header">
+            <h2>⚡ 核心能力 <span style="font-size:0.9rem;">· 可横向滑动</span></h2>
+            <div class="scroll-hint"><i class="fas fa-arrow-right"></i> 拖动查看更多</div>
+        </div>
+        <div class="horizontal-scroll">
+            <div class="skill-card"><i class="fab fa-python"></i><h3>Python</h3><p>自动化/RPA/后端逻辑</p></div>
+            <div class="skill-card"><i class="fas fa-brain"></i><h3>AI应用落地</h3><p>Dify · Coze · LangChain · RAG</p></div>
+            <div class="skill-card"><i class="fas fa-microchip"></i><h3>本地大模型</h3><p>LM Studio · Ollama · 流式输出</p></div>
+            <div class="skill-card"><i class="fas fa-eye"></i><h3>计算机视觉</h3><p>OpenCV · YOLO 目标检测</p></div>
+            <div class="skill-card"><i class="fas fa-database"></i><h3>数据库</h3><p>MySQL · PostgreSQL · SQLite</p></div>
+            <div class="skill-card"><i class="fas fa-robot"></i><h3>Prompt工程</h3><p>角色设定 · 思维链 · 结构化输出</p></div>
+        </div>
+    </div>
+
+    <!-- 项目经验 - 横向滚动卡片 (核心亮点) -->
+    <div class="scroll-section">
+        <div class="section-header">
+            <h2>📌 代表项目</h2>
+            <div class="scroll-hint">← 滑动浏览 →</div>
+        </div>
+        <div class="horizontal-scroll">
+            <div class="project-card">
+                <div class="card-icon">📦🤖</div>
+                <div class="card-title">智能物流自动化系统</div>
+                <div class="card-sub">独立开发 · RAG + 微信机器人</div>
+                <div class="card-desc">日均处理1500+消息，自动创建120+订单，人工干预减少90%。集成本地大模型实现智能问答。</div>
+                <div class="badge-group"><span class="badge">LangChain</span><span class="badge">RPA</span><span class="badge">FastAPI</span></div>
+            </div>
+            <div class="project-card">
+                <div class="card-icon">🐦📊</div>
+                <div class="card-title">微博攻略AI分析站</div>
+                <div class="card-sub">爬虫 + 大模型提炼 + 网页可视化</div>
+                <div class="card-desc">爬取游戏博主图文，调用大模型抽取核心观点，生成网页看板，方便玩家查看版本阵容。</div>
+                <div class="badge-group"><span class="badge">Scrapy</span><span class="badge">OpenAI API</span><span class="badge">HTML/CSS</span></div>
+            </div>
+            <div class="project-card">
+                <div class="card-icon">🎮🕹️</div>
+                <div class="card-title">游戏自动化脚本(开源)</div>
+                <div class="card-sub">Python + OpenCV + YOLOv8</div>
+                <div class="card-desc">目标检测 + 模拟操作，产出游戏辅助工具，源码无偿分享至社群，获200+同学使用学习。</div>
+                <div class="badge-group"><span class="badge">YOLO</span><span class="badge">OpenCV</span><span class="badge">pyautogui</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 工作经历 - 也是横向卡片（突出灵动性） -->
+    <div class="scroll-section">
+        <div class="section-header">
+            <h2>💼 工作经历</h2>
+        </div>
+        <div class="horizontal-scroll">
+            <div class="job-card">
+                <div class="card-icon">🏭</div>
+                <div class="card-title">AI应用开发</div>
+                <div class="card-sub">陕西供销仓储物流 · 2025.06 – 至今</div>
+                <div class="card-desc">RPA自动化流程开发，垂直RAG知识库构建，本地大模型服务封装，智能客服系统响应提速40%。</div>
+                <div class="badge-group"><span class="badge">RPA</span><span class="badge">知识库</span><span class="badge">API集成</span></div>
+            </div>
+            <div class="job-card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">电气工程师(实习)</div>
+                <div class="card-sub">武汉泰先鑫鹏 · 2025.03 – 2025.05</div>
+                <div class="card-desc">设备运行日志分析，提前预警异常，协助维护文档标准化。</div>
+                <div class="badge-group"><span class="badge">PLC基础</span><span class="badge">数据分析</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 教育 & 个人优势 网格区域 (非滚动) -->
+    <div class="grid-2col">
+        <div class="info-card">
+            <h3><i class="fas fa-graduation-cap"></i> 教育背景</h3>
+            <p><strong>西安理工大学高科学院</strong><br>电气工程及其自动化 · 全日制本科<br>2023.09 – 2025.07</p>
+        </div>
+        <div class="info-card">
+            <h3><i class="fas fa-rocket"></i> 个人优势</h3>
+            <p>✔ 全链路AI应用（采集→分析→RAG→服务封装）<br>✔ 善于将大模型落地为业务提效工具<br>✔ 开源分享精神，累计帮助200+开发者</p>
+        </div>
+    </div>
+
+    <!-- 图文混排行 (模仿你 guide.html 的卡片外观，但内容是简历亮点) -->
+    <div class="image-text-row">
+        <div class="image-placeholder">
+            <i class="fas fa-chart-line fa-2x"></i>
+        </div>
+        <div class="image-text">
+            <strong>📈 数据成果</strong> · 智能物流系统日均处理消息1500+条，订单自动化率86%；微博攻略站累计访问量5000+；开源脚本被Fork 80+次。
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.8rem; color: #7b9cae; border-top: 1px solid #cddfe7; padding-top: 1.5rem;">
+        🌐 在线简历 · 网页形式 | 支持手机/电脑自适应 | 最后更新 2026.04
+    </div>
+</div>
+</body>
+</html>
